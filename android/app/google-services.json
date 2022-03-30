@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "626133923001",
+    "project_id": "cod3r-chat-8c6bc",
+    "storage_bucket": "cod3r-chat-8c6bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626133923001:android:d4117e6688a549cf7f5768",
+        "android_client_info": {
+          "package_name": "br.com.fabio.chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "626133923001-eij9g7h5dquaov56j834rgagr4l03tni.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAs-IqBpkIY1dqLRxYuFJ9epRnkXwUBs-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "626133923001-eij9g7h5dquaov56j834rgagr4l03tni.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
