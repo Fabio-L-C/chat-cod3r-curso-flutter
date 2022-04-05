@@ -14,9 +14,9 @@ class MessageBubble extends StatelessWidget {
     required this.belongsToCurrentUser,
   }) : super(key: key);
 
-  Widget _showUserImage(String imageUrl) {
+  Widget _showUserImage(String imageURL) {
     ImageProvider? provider;
-    final uri = Uri.parse(imageUrl);
+    final uri = Uri.parse(imageURL);
 
     if (uri.path.contains(_defaultImage)) {
       provider = const AssetImage(_defaultImage);
@@ -42,8 +42,9 @@ class MessageBubble extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                color:
-                    belongsToCurrentUser ? Colors.grey.shade300 : Colors.blue,
+                color: belongsToCurrentUser
+                    ? Colors.grey.shade300
+                    : Theme.of(context).colorScheme.primary,
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(12),
                   topRight: const Radius.circular(12),
@@ -93,7 +94,7 @@ class MessageBubble extends StatelessWidget {
           top: 0,
           left: belongsToCurrentUser ? null : 165,
           right: belongsToCurrentUser ? 165 : null,
-          child: _showUserImage(message.userImageUrl),
+          child: _showUserImage(message.userImageURL),
         ),
       ],
     );

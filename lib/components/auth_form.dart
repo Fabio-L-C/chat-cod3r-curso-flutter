@@ -67,7 +67,7 @@ class _AuthFormState extends State<AuthForm> {
                   validator: (_name) {
                     final name = _name ?? '';
                     if (name.trim().length < 5) {
-                      return 'Nome deve ter no minimo 5 caracteres.';
+                      return 'Nome deve ter no mínimo 5 caracteres.';
                     }
                     return null;
                   },
@@ -76,11 +76,11 @@ class _AuthFormState extends State<AuthForm> {
                 key: const ValueKey('email'),
                 initialValue: _formData.email,
                 onChanged: (email) => _formData.email = email,
-                decoration: const InputDecoration(labelText: 'E-mail'),
+                decoration: const InputDecoration(labelText: 'Email'),
                 validator: (_email) {
                   final email = _email ?? '';
                   if (!email.contains('@')) {
-                    return 'E-mail informado não é valido.';
+                    return 'E-mail informado não é válido.';
                   }
                   return null;
                 },
@@ -94,7 +94,7 @@ class _AuthFormState extends State<AuthForm> {
                 validator: (_password) {
                   final password = _password ?? '';
                   if (password.length < 6) {
-                    return 'Senha deve ter no minimo 6 caracteres.';
+                    return 'Senha deve ter no mínimo 6 caracteres.';
                   }
                   return null;
                 },

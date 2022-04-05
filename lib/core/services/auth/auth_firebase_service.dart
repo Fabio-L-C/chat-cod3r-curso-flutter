@@ -9,7 +9,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 class AuthFirebaseService implements AuthService {
   static ChatUser? _currentUser;
-
   static final _userStream = Stream<ChatUser?>.multi((controller) async {
     final authChanges = FirebaseAuth.instance.authStateChanges();
     await for (final user in authChanges) {
@@ -43,16 +42,17 @@ class AuthFirebaseService implements AuthService {
 
     if (credential.user == null) return;
 
-    // 1. Upload da foto do usuario
+    // 1. Upload da foto do usuário
     final imageName = '${credential.user!.uid}.jpg';
-    final imageUrl = await _uploadUserImage(image, imageName);
+    final imageURL = await _uploadUserImage(image, imageName);
 
-    // 2. Atualizar os atributos do usuario
+    // 2. Atualizar os atributos do usuário
     await credential.user?.updateDisplayName(name);
-    await credential.user?.updatePhotoURL(imageUrl);
+    await credential.user?.updatePhotoURL(imageURL);
 
-    // 3. Salvar usuario no banco de dados
-    await _saveChatUser(_toChatUser(credential.user!, imageUrl));
+    // 3. Salvar usuário no banco de dados
+    _currentUser = _toChatUser(credential.user!, name, imageURL);
+    await _saveChatUser(_currentUser!);
   }
 
   @override
@@ -70,6 +70,7 @@ class AuthFirebaseService implements AuthService {
 
   Future<String?> _uploadUserImage(File? image, String imageName) async {
     if (image == null) return null;
+
     final storage = FirebaseStorage.instance;
     final imageRef = storage.ref().child('user_images').child(imageName);
     await imageRef.putFile(image).whenComplete(() {});
@@ -83,16 +84,16 @@ class AuthFirebaseService implements AuthService {
     return docRef.set({
       'name': user.name,
       'email': user.email,
-      'imageUrl': user.imageUrl,
+      'imageURL': user.imageURL,
     });
   }
 
-  static ChatUser _toChatUser(User user, [String? imageUrl]) {
+  static ChatUser _toChatUser(User user, [String? name, String? imageURL]) {
     return ChatUser(
       id: user.uid,
-      name: user.displayName ?? user.email!.split('@')[0],
+      name: name ?? user.displayName ?? user.email!.split('@')[0],
       email: user.email!,
-      imageUrl: imageUrl ?? user.photoURL ?? 'assets/images/avatar.png',
+      imageURL: imageURL ?? user.photoURL ?? 'assets/images/avatar.png',
     );
   }
 }

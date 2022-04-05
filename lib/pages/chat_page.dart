@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_unnecessary_containers
-
 import 'package:chat/components/messages.dart';
 import 'package:chat/components/new_message.dart';
 import 'package:chat/core/services/auth/auth_service.dart';
@@ -27,20 +25,15 @@ class ChatPage extends StatelessWidget {
               items: [
                 DropdownMenuItem(
                   value: 'logout',
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.exit_to_app,
-                          color: Colors.black87,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text('Sair'),
-                      ],
-                    ),
+                  child: Row(
+                    children: const [
+                      Icon(
+                        Icons.exit_to_app,
+                        color: Colors.black87,
+                      ),
+                      SizedBox(width: 10),
+                      Text('Sair'),
+                    ],
                   ),
                 ),
               ],
@@ -57,9 +50,9 @@ class ChatPage extends StatelessWidget {
                 icon: const Icon(Icons.notifications),
                 onPressed: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const NotificationPage(),
-                    ),
+                    MaterialPageRoute(builder: (ctx) {
+                      return const NotificationPage();
+                    }),
                   );
                 },
               ),
@@ -82,23 +75,13 @@ class ChatPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: const [
-            Expanded(child: Messages()),
+            Expanded(
+              child: Messages(),
+            ),
             NewMessage(),
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: const Icon(Icons.add),
-      //   onPressed: () {
-      //     Provider.of<ChatNotificationService>(
-      //       context,
-      //       listen: false,
-      //     ).add(ChatNotification(
-      //       title: 'Mais uma notificação!',
-      //       body: Random().nextDouble().toString(),
-      //     ));
-      //   },
-      // ),
     );
   }
 }

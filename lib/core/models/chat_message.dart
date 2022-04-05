@@ -5,14 +5,14 @@ class ChatMessage {
 
   final String userId;
   final String userName;
-  final String userImageUrl;
+  final String userImageURL;
 
-  ChatMessage({
+  const ChatMessage({
     required this.id,
     required this.text,
     required this.createdAt,
     required this.userId,
     required this.userName,
-    required this.userImageUrl,
+    required this.userImageURL,
   });
 }
